@@ -1,0 +1,47 @@
+.cellSoft {
+  width: 70px;
+  height: 70px;
+  background: #F0E68C;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 5px;
+  color: #F0E68C;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellDark {
+  width: 70px;
+  height: 70px;
+  background: #8B4513;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 5px;
+  color: #8B4513;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  border-radius: 100px;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 2px;
+  transition: background-color 0.5s;
+}
+
+.yellow {
+  height: 60px;
+  width: 60px;
+  background-color: yellow;
+  border-radius: 100px;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 2px;
+  transition: background-color 0.5s;
+}

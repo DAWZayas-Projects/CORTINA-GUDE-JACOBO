@@ -1,0 +1,30 @@
+.puzzleContainer {
+  height: 100%;
+  display: flex;
+}
+
+.puzzleGame {
+  margin: auto auto;
+  text-align: center;
+  line-height: 70px;
+  width: 348px;
+  height: 348px;
+}
+.puzzleCell {
+  width: 70px;
+  height: 70px;
+  margin-right: 7px;
+  border-radius: 4px;
+  margin-bottom: 7px;
+  background: #87CEFA;
+  box-shadow: rgba(0,0,0,0.2) 0 1px 2px 0;
+  color: #333;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  position: absolute;
+}
+.puzzleCellEmpty {
+  opacity: 0;
+}

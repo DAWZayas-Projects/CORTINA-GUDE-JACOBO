@@ -1,0 +1,43 @@
+.cell {
+  width: 70px;
+  height: 70px;
+  margin-right: 1px;
+  border-radius: 4px;
+  margin-bottom: 1px;
+  background: grey;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 5px;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.white {
+  height: 60px;
+  width: 60px;
+  background-color: #FFF;
+  border-radius: 100px;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 2px inset;
+}
+
+.red {
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  border-radius: 100px;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 2px;
+  transition: background-color 0.5s;
+}
+
+.yellow {
+  height: 60px;
+  width: 60px;
+  background-color: yellow;
+  border-radius: 100px;
+  box-shadow: rgba(0,0,0,0.2) 0 0 10px 2px;
+  transition: background-color 0.5s;
+}
