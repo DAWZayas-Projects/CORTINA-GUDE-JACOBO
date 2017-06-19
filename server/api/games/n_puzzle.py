@@ -7,6 +7,8 @@ class N_Puzzle_Game:
 
     def __init__(self, dimension):
         self.dimension = dimension
+        self.bfs_moves = 0
+        self.a_star_moves = 0
         N_Puzzle_Game.board_positions(self)
         N_Puzzle_Game.goal_state(self)
         N_Puzzle_Game.board_sides(self)

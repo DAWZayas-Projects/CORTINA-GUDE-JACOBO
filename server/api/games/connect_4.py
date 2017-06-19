@@ -1,4 +1,7 @@
+import json
+
 from server.api.algorithms.adversial import minimax_decision, minimax_alfa_beta_decision
+
 
 class Connect4_Game:
 
@@ -8,11 +11,12 @@ class Connect4_Game:
         self.status = 0
         self.depth = 4
         self.score = 100000
-        self.player = 0
+        self.player = 1
         self.board = []
+        self.algorithm = 'minimax'
 
     def generate_board(self):
-        self.board = [[8 for x in range(self.columns)] for y in range(self.rows)]
+        self.board = [[None for x in range(self.columns)] for y in range(self.rows)]
 
     def is_finished(self, depth, score, board):
         if (depth == 0 or score == self.score or score == -self.score or Connect4_Game.is_board_full(self, board)):
@@ -21,20 +25,20 @@ class Connect4_Game:
 
     def is_board_full(self, board):
         for i in range(self.columns):
-            if (board[0][i] == 8):
+            if (board[0][i] is None):
                 return False
         return True
 
     def change_turn(self):
-        self.player = 1 if self.player == 0 else 0
+        self.player = 1 if self.player == 2 else 2
 
     def change_player(self, player):
-        return 1 if player == 0 else 0
+        return 1 if player == 2 else 2
 
     def make_move(self, column, board):
-        if (self.board[0][column] == 8 and column >= 0 and column < self.columns):
+        if (self.board[0][column] is None and column >= 0 and column < self.columns):
             for y in range(self.rows - 1, -1, -1):
-                if (board[y][column] == 8):
+                if (board[y][column] is None):
                     board[y][column] = self.player
                     break
             return True
@@ -42,9 +46,9 @@ class Connect4_Game:
             return False
 
     def make_internal_move(self, column, board, player):
-        if (self.board[0][column] == 8 and column >= 0 and column < self.columns):
+        if (self.board[0][column] is None and column >= 0 and column < self.columns):
             for y in range(self.rows - 1, -1, -1):
-                if (board[y][column] == 8):
+                if (board[y][column] is None):
                     board[y][column] = player
                     break
             return True
@@ -53,12 +57,15 @@ class Connect4_Game:
 
     def ai_movement(self):
         if not Connect4_Game.is_game_over(self):
-            # ai_move = minimax_decision(self, (self.board, self.player), self.depth)
-            ai_move = minimax_alfa_beta_decision(self, (self.board, self.player), self.depth)
+            if self.algorithm == 'minimax':
+                ai_move = minimax_decision(self, (self.board, self.player), self.depth)
+            else:
+                ai_move = minimax_alfa_beta_decision(self, (self.board, self.player), self.depth)
             self.board = ai_move
             Connect4_Game.change_turn(self)
             Connect4_Game.print_board(self, self.board)
             # Connect4_Game.make_move(self, ai_move, self.board)
+            return ai_move
 
     def player_movement(self):
         if not Connect4_Game.is_game_over(self):
@@ -67,6 +74,23 @@ class Connect4_Game:
             Connect4_Game.make_move(self, player_move, self.board)
             Connect4_Game.change_turn(self)
             Connect4_Game.print_board(self, self.board)
+
+    def player_movement_remote(self, move):
+        if not Connect4_Game.is_game_over(self):
+            if move is not None:
+                player_move = int(move)
+                Connect4_Game.make_move(self, player_move, self.board)
+                if Connect4_Game.is_game_over(self):
+                    return {'status': self.status, 'board': self.board}
+                else:
+                    Connect4_Game.change_turn(self)
+                    ai_move = Connect4_Game.ai_movement(self)
+                    Connect4_Game.is_game_over(self)
+                    return {'status': self.status, 'board': ai_move}
+            else:
+                ai_move = Connect4_Game.ai_movement(self)
+                Connect4_Game.is_game_over(self)
+                return {'status': self.status, 'board': ai_move}
 
     def children_boards(self, board, player):
         children = []
@@ -111,9 +135,9 @@ class Connect4_Game:
         human_points = 0
         computer_points = 0
         for i in range(4):
-            if (board[row][column] == 0):
+            if (board[row][column] == 1):
                 human_points += 1
-            elif (board[row][column] == 1):
+            elif (board[row][column] == 2):
                 computer_points += 1
             row += delta_y
             column += delta_x

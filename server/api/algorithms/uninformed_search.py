@@ -29,6 +29,7 @@ def breadth_first_search(start, goal, game):
         explored.add(str(node.state))
         if node.state == goal:
             print("bfs eplored: ", len(explored))
+            game.bfs_moves = len(explored)
             return get_solution_movements(node)
         for neighbor in game.expand_node(node):
             str_n = str(neighbor.state)
