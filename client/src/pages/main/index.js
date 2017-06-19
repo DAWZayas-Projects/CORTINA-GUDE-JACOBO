@@ -21,7 +21,7 @@ const MainPage = () => (
         <div className="card-block">
           <h4 className="card-title">N Puzzle</h4>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the bulk of the cards content
+            The object of the puzzle is to place the tiles in order by making sliding moves that use the empty space.
           </p>
           <Link to="/npuzzle" className="btn btn-default">
             n puzzle
@@ -37,7 +37,7 @@ const MainPage = () => (
         <div className="card-block">
           <h4 className="card-title">Connect 4</h4>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the bulk of the cards content
+            The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four.
           </p>
           <Link to="/connect4" className="btn btn-default">
             connect 4
@@ -53,7 +53,7 @@ const MainPage = () => (
         <div className="card-block">
           <h4 className="card-title">N Queen</h4>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the bulk of the cards content
+            The objective is that no two queens share the same row, column, or diagonal.
           </p>
           <Link to="/nqueen" className="btn btn-default">
             n queen
