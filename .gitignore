@@ -1,3 +1,4 @@
 IA_venv/
 **/__pycache__
 server/db/
+client/node_modules/
